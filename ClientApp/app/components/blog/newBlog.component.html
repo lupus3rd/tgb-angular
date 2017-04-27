@@ -1,0 +1,71 @@
+﻿<h2>Add new blog</h2>
+<style>
+    .hidedata {
+        padding-top: 50px;
+    }
+</style>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="col-md-8 col-lg-offset-4">
+            <h3>Enter Blog Details</h3>
+        </div>
+
+        <div class="row hidedata" id="hidDiv">
+            <div class="col-md-6 ">
+                <form class="form-horizontal" [formGroup]="formData" (ngSubmit)="submitData()">
+                    <div class="form-group">
+                        <label for="BlogName" class="col-sm-4 control-label">Blog Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="BlogName" placeholder="Blog Name"
+                                   formControlName="BlogName">
+                        </div>
+                        <div *ngIf="!formData.get('BlogName').valid && formData.get('BlogName').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Enter title
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Designation" class="col-sm-4 control-label">Content</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="Content" placeholder="Content"
+                                   formControlName="Content">
+                        </div>
+                        <div *ngIf="!formData.get('Content').valid && formData.get('Content').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Enter Blog Content
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CategoryId" class="col-sm-4 control-label">Category</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="Category"
+                                    formControlName="Category">
+                                <option value="0">---Select---</option>
+                                <option *ngFor="let data of CategoryList" value={{data.id}}>
+                                    {{data.name}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <div *ngIf="!formData.get('Category').valid && formData.get('Category').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Select a Category for the Blog
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" [disabled]="!formData.valid" class="btn btn-info">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>   
