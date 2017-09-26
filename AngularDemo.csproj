@@ -20,6 +20,14 @@
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="ClientApp\app\components\blogCategory\CategoryList.component.ts">
+      <DependentUpon>CategoryList.component.html</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\comments\CategoryList.component.ts">
+      <DependentUpon>CategoryList.component.html</DependentUpon>
+    </None>
+  </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec Command="npm install" />

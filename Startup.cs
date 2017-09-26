@@ -55,25 +55,25 @@ namespace AngularDemo
 
             app.UseStaticFiles();
 
-            //THIS HERE!!!!
-           app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                name: "blog",
-                  template: "api/Blog/BlogList",
-                  defaults: new { controller = "Blog", action = "BlogList" });
-                routes.MapRoute(
-                    name: "blog1",
-                      template: "api/Blog/BlogDetails/{Empid?}",
-                      defaults: new { controller = "Blog", action = "BlogDetails" });
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+            //MapRoute setup. sort of twice in here...
+            app.UseMvc(routes =>
+             {
+                 routes.MapRoute(
+                 name: "blog",
+                   template: "api/Blog/BlogList",
+                   defaults: new { controller = "Blog", action = "BlogList" });
+                 routes.MapRoute(
+                     name: "blog1",
+                       template: "api/Blog/BlogDetails/{Empid?}",
+                       defaults: new { controller = "Blog", action = "BlogDetails" });
+                 routes.MapRoute(
+                     name: "default",
+                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
+                 routes.MapSpaFallbackRoute(
+                     name: "spa-fallback",
+                     defaults: new { controller = "Home", action = "Index" });
+             });
 
         }
     }

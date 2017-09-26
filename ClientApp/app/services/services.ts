@@ -1,25 +1,27 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Injectable()
 export class BlogServices {
     private link: string;
     //Whats a promise?
 
-    constructor(private http: Http) {
-        this.link = 'http://localhost:65510/api/'; //to change
+    constructor(private http: Http, private locationStrategy: LocationStrategy) {
+        this.link = this.locationStrategy.getBaseHref(); //not sure if this is the best solution
     }
 
     getBlogList() {
-        return this.http.get(this.link+'Blog');
+        return this.http.get(this.link+'api/Blog');
     }
 
     getCategoryList() {
-        return this.http.get(this.link +'categories');
+        return this.http.get(this.link +'api/categories');
     }  
 
     getBlogDetails(empId: any) {
-        return this.http.get(this.link +'Blog/' + empId);
+        return this.http.get(this.link +'api/Blog/' + empId);
     }  
 
     postData(empObj: any) {
@@ -28,7 +30,7 @@ export class BlogServices {
             'application/json; charset=utf-8'
         });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.link +'Blog', JSON.stringify(empObj), options);
+        return this.http.post(this.link +'api/Blog', JSON.stringify(empObj), options);
     }  
 
     editBlogData(empObj: any) {

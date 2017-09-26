@@ -1,0 +1,54 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h3>Category List</h3>
+        <br />
+    </div>
+    <div class="col-md-12">
+        <div class="form-actions no-color">
+            <div>
+                <span style="font-weight:bold;font-size:20px">Search:</span>
+                <input type="text" name="searchdata" #search (keyup)="0" />
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let blData of CategoryList | categorySearchFilter:search.value; let i = index; trackBy: Id">
+                    <td>
+                        {{i+1}}
+                    </td>
+                    <td>
+                        {{blData.name}}
+                    </td>
+                    <!--<td>
+                        <a [routerLink]="['/details/',blData.id]"
+                           class="btn btn-primary">
+                            Detail
+                        </a>
+                        <a [routerLink]="['/edit/',blData.id]"
+                           class="btn btn-success">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger" (click)="deleteBlog(blData.id)">
+                            Delete
+                        </a>
+                    </td>-->
+                </tr>
+        </table>
+    </div>
+</div>   

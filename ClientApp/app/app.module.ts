@@ -7,9 +7,12 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/blog/details.component';
 import { newBlogComponent } from './components/blog/newBlog.component';
 import { editBlogComponent } from './components/blog/editBlog.component';
+import { CategoryListComponent } from './components/blogCategory/CategoryList.component';
+import { manageCommentsComponent } from './components/comments/manageComments.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogServices } from './services/services';
 import { filterSearch } from './pipes/search';
+import { filterCategorySearch } from './pipes/categorySearch';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -20,7 +23,10 @@ import { filterSearch } from './pipes/search';
         DetailsComponent,
         newBlogComponent,
         editBlogComponent,
-        filterSearch
+        manageCommentsComponent,
+        CategoryListComponent,
+        filterSearch,
+        filterCategorySearch
     ],
     imports: [
         FormsModule,
@@ -32,7 +38,9 @@ import { filterSearch } from './pipes/search';
             { path: 'details/:id', component: DetailsComponent },
             { path: 'new', component: newBlogComponent },
             { path: 'edit/:id', component: editBlogComponent },
-            { path: '**', redirectTo: 'home' }
+            { path: 'categoryList', component: CategoryListComponent },
+            { path: 'comment/:id', component: manageCommentsComponent },
+          { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [BlogServices]
